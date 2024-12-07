@@ -12,8 +12,7 @@
     "require": {
         "php": "^8.2",
         "livewire/livewire": "^3.0",
-        "laravel/framework": "^10.0|^11.0",
-        "codemirror/codemirror": "^5.65"
+        "laravel/framework": "^10.0|^11.0"
     },
     "require-dev": {
         "orchestra/testbench": "^8.0|^9.0",

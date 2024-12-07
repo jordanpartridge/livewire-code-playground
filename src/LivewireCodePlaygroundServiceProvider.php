@@ -4,6 +4,8 @@ namespace JordanPartridge\LivewireCodePlayground;
 
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
+use JordanPartridge\LivewireCodePlayground\CodePlayground;
+use JordanPartridge\LivewireCodePlayground\Services\CodeExecutor;
 
 class LivewireCodePlaygroundServiceProvider extends ServiceProvider
 {
@@ -19,8 +21,9 @@ class LivewireCodePlaygroundServiceProvider extends ServiceProvider
             __DIR__ . '/../config/code-playground.php' => config_path('code-playground.php'),
         ], 'livewire-code-playground-config');
 
+        // Publish assets for Vite compilation
         $this->publishes([
-            __DIR__ . '/../public' => public_path('vendor/livewire-code-playground'),
+            __DIR__ . '/../resources/js' => resource_path('js/vendor/livewire-code-playground'),
         ], 'livewire-code-playground-assets');
 
         Livewire::component('code-playground', CodePlayground::class);
@@ -32,5 +35,7 @@ class LivewireCodePlaygroundServiceProvider extends ServiceProvider
             __DIR__ . '/../config/code-playground.php',
             'code-playground'
         );
+
+        $this->app->singleton(CodeExecutor::class);
     }
 }
